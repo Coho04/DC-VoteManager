@@ -26,10 +26,10 @@ public class Discord {
     public static String getCmdRestart = "restart";
     public static String cmdHelp = "help";
 
+    public static String cmdVote = "vote";
+
     public static final String cmdSettings = "settings";
-    public static final String cmdSettingsSubCmdSetProcessChannel = "set-process-channel";
-    public static final String cmdSettingsSubCmdSetClosedChannel = "set-closed-channel";
-    public static final String cmdSettingsSubCmdSetOpenChannel = "set-open-channel";
+    public static final String cmdSettingsSubCmdSetVoteChannel = "set-vote-channel";
     public static final String cmdSettingsSubCmdOptionChannel = "textchannel";
 
     public Discord(String Token) {
@@ -65,10 +65,9 @@ public class Discord {
         bot.upsertCommand(getCmdRestart, "Startet den Discord Bot neu!").queue();
         bot.upsertCommand(cmdSettings, "Stellt den Discord Bot für diesen Server ein!")
                 .addSubcommands(
-                        new SubcommandData(cmdSettingsSubCmdSetProcessChannel, "Setzt den Todo Process Channel!").addOption(OptionType.CHANNEL, cmdSettingsSubCmdOptionChannel, "Der Channel in den die Aufgaben gesendet werden sollen!", true),
-                        new SubcommandData(cmdSettingsSubCmdSetClosedChannel, "Setzt den Todo Closed Channel!").addOption(OptionType.CHANNEL, cmdSettingsSubCmdOptionChannel, "Der Channel in den die Aufgaben gesendet werden sollen!", true),
-                        new SubcommandData(cmdSettingsSubCmdSetOpenChannel, "Setzt den Todo Open Channel!").addOption(OptionType.CHANNEL, cmdSettingsSubCmdOptionChannel, "Der Channel in den die Aufgaben gesendet werden sollen!", true)
+                        new SubcommandData(cmdSettingsSubCmdSetVoteChannel, "Setzt den Vote Channel!").addOption(OptionType.CHANNEL, cmdSettingsSubCmdOptionChannel, "Der Channel in den die Votes gesendet werden sollen!", true)
                 ).queue();
+        bot.upsertCommand(cmdVote, "Erstellt eine Vote Nachricht!").queue();
     }
 
     private void Online() {

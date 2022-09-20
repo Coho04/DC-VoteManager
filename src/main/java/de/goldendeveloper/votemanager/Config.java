@@ -29,10 +29,10 @@ public class Config {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         InputStream local = classloader.getResourceAsStream("Login.xml");
         try {
-            if (local != null && local.available() == 1) {
+            if (local != null && local.available() >= 1) {
                 readXML(local);
             } else {
-                File file = new File("/home/Golden-Developer/JavaBots/GD-TodoManager/config/Login.xml");
+                File file = new File("/home/Golden-Developer/JavaBots/" + Main.getDiscord().getProjektName() + "/config/Login.xml");
                 InputStream targetStream = new FileInputStream(file);
                 readXML(targetStream);
             }

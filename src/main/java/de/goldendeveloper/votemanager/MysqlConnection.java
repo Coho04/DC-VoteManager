@@ -7,13 +7,11 @@ import de.goldendeveloper.mysql.entities.Table;
 public class MysqlConnection {
 
     private final MYSQL mysql;
-    public static String dbName = "GD-TodoManager";
+    public static String dbName = "GD-VoteManager";
     public static String settingTable = "settings";
     public static String clmGuildID = "guild";
-    public static String clmOpenChannel = "open";
-    public static String clmProcessChannel = "process";
-    public static String clmClosedChannel = "closed";
-    public static String clmPermRole = "role";
+    public static String clmVoteChannel = "vote";
+    public static String clmVoteRole = "role";
 
     public MysqlConnection(String hostname, String username, String password, int port) {
         mysql = new MYSQL(hostname, username, password, port);
@@ -28,19 +26,13 @@ public class MysqlConnection {
         if (!table.existsColumn(clmGuildID)) {
             table.addColumn(clmGuildID);
         }
-        if (!table.existsColumn(clmOpenChannel)) {
-            table.addColumn(clmOpenChannel);
+        if (!table.existsColumn(clmVoteChannel)) {
+            table.addColumn(clmVoteChannel);
         }
-        if (!table.existsColumn(clmProcessChannel)) {
-            table.addColumn(clmProcessChannel);
+        if (!table.existsColumn(clmVoteRole)) {
+            table.addColumn(clmVoteRole);
         }
-        if (!table.existsColumn(clmClosedChannel)) {
-            table.addColumn(clmClosedChannel);
-        }
-        if (!table.existsColumn(clmPermRole)) {
-            table.addColumn(clmPermRole);
-        }
-        System.out.println("MYSQL Finished");
+        System.out.println("[Golden-Developer][GD-VoteManager] MYSQL Finished");
     }
 
     public MYSQL getMysql() {
