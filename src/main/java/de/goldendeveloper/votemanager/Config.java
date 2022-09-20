@@ -32,7 +32,7 @@ public class Config {
             if (local != null && local.available() >= 1) {
                 readXML(local);
             } else {
-                File file = new File("/home/Golden-Developer/JavaBots/" + Main.getDiscord().getProjektName() + "/config/Login.xml");
+                File file = new File("/home/Golden-Developer/JavaBots/" + Main.getProjektName() + "/config/Login.xml");
                 InputStream targetStream = new FileInputStream(file);
                 readXML(targetStream);
             }

@@ -2,6 +2,9 @@ package de.goldendeveloper.votemanager;
 
 import de.goldendeveloper.votemanager.discord.Discord;
 
+import java.io.IOException;
+import java.util.Properties;
+
 public class Main {
 
     private static Discord discord;
@@ -42,4 +45,25 @@ public class Main {
     public static Boolean getDeployment() {
         return deployment;
     }
+
+    public static  String getProjektVersion() {
+        Properties properties = new Properties();
+        try {
+            properties.load(Main.class.getClassLoader().getResourceAsStream("project.properties"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return properties.getProperty("version");
+    }
+
+    public static String getProjektName() {
+        Properties properties = new Properties();
+        try {
+            properties.load(Main.class.getClassLoader().getResourceAsStream("project.properties"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return properties.getProperty("name");
+    }
+
 }
