@@ -10,6 +10,7 @@ public class Main {
     private static Discord discord;
     private  static Config config;
     private  static MysqlConnection mysqlConnection;
+    private static ServerCommunicator serverCommunicator;
 
     private static Boolean restart = false;
     private static Boolean deployment = true;
@@ -18,10 +19,12 @@ public class Main {
         if (args.length >= 1 && args[0].equalsIgnoreCase("restart")) {
             restart = true;
         }
-        if (System.getProperty("os.name").split(" ")[0].equalsIgnoreCase("windows")) {
+        String device = System.getProperty("os.name").split(" ")[0];
+        if (device.equalsIgnoreCase("windows") || device.equalsIgnoreCase("Mac")) {
             deployment = false;
         }
         config = new Config();
+        serverCommunicator = new ServerCommunicator(config.getServerHostname(), config.getServerPort());
         mysqlConnection = new MysqlConnection(config.getMysqlHostname(), config.getMysqlUsername(), config.getMysqlPassword(), config.getMysqlPort());
         discord = new Discord(config.getDiscordToken());
     }
@@ -46,24 +49,9 @@ public class Main {
         return deployment;
     }
 
-    public static  String getProjektVersion() {
-        Properties properties = new Properties();
-        try {
-            properties.load(Main.class.getClassLoader().getResourceAsStream("project.properties"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return properties.getProperty("version");
-    }
 
-    public static String getProjektName() {
-        Properties properties = new Properties();
-        try {
-            properties.load(Main.class.getClassLoader().getResourceAsStream("project.properties"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return properties.getProperty("name");
-    }
 
+    public static ServerCommunicator getServerCommunicator() {
+        return serverCommunicator;
+    }
 }
