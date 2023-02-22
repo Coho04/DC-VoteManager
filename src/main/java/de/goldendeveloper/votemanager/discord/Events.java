@@ -20,10 +20,10 @@ import net.dv8tion.jda.api.events.session.ShutdownEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.Command;
 import net.dv8tion.jda.api.interactions.components.ActionRow;
-import net.dv8tion.jda.api.interactions.components.Modal;
 import net.dv8tion.jda.api.interactions.components.buttons.Button;
 import net.dv8tion.jda.api.interactions.components.text.TextInput;
 import net.dv8tion.jda.api.interactions.components.text.TextInputStyle;
+import net.dv8tion.jda.api.interactions.modals.Modal;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
@@ -69,7 +69,7 @@ public class Events extends ListenerAdapter {
         if (e.isFromGuild()) {
             if (cmd.equalsIgnoreCase(Discord.cmdVote)) {
                 Table table = Main.getMysqlConnection().getMysql().getDatabase(MysqlConnection.dbName).getTable(MysqlConnection.settingTable);
-                String roleID = table.getRow(table.getColumn(MysqlConnection.clmGuildID), e.getGuild().getId()).get().get(MysqlConnection.clmVoteRole).getAsString();
+                String roleID = table.getRow(table.getColumn(MysqlConnection.clmGuildID), e.getGuild().getId()).getData().get(MysqlConnection.clmVoteRole).getAsString();
                 if (!roleID.isBlank()) {
                     Role role = Main.getDiscord().getBot().getRoleById(roleID);
                     if (hasRole(role, e.getMember())) {
@@ -198,7 +198,7 @@ public class Events extends ListenerAdapter {
 
     public static TextChannel getTextChannel(Guild guild) {
         Table table = Main.getMysqlConnection().getMysql().getDatabase(MysqlConnection.dbName).getTable(MysqlConnection.settingTable);
-        HashMap<String, SearchResult> row = table.getRow(table.getColumn(MysqlConnection.clmGuildID), guild.getId()).get();
+        HashMap<String, SearchResult> row = table.getRow(table.getColumn(MysqlConnection.clmGuildID), guild.getId()).getData();
         return guild.getTextChannelById(row.get( MysqlConnection.clmVoteChannel).getAsString());
     }
 }

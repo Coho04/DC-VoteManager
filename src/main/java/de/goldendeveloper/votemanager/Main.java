@@ -2,9 +2,6 @@ package de.goldendeveloper.votemanager;
 
 import de.goldendeveloper.votemanager.discord.Discord;
 
-import java.io.IOException;
-import java.util.Properties;
-
 public class Main {
 
     private static Discord discord;
