@@ -1,80 +1,30 @@
 package de.goldendeveloper.votemanager;
 
-import de.goldendeveloper.votemanager.discord.Discord;
-import io.sentry.ITransaction;
-import io.sentry.Sentry;
-import io.sentry.SpanStatus;
+import de.goldendeveloper.dcbcore.DCBotBuilder;
+import de.goldendeveloper.dcbcore.interfaces.CommandInterface;
+import de.goldendeveloper.votemanager.discord.CustomEvents;
+import de.goldendeveloper.votemanager.discord.commands.Settings;
+import de.goldendeveloper.votemanager.discord.commands.Vote;
+
+import java.util.LinkedList;
 
 public class Main {
 
-    private static Discord discord;
-    private  static Config config;
     private  static MysqlConnection mysqlConnection;
-    private static ServerCommunicator serverCommunicator;
-
-    private static Boolean restart = false;
-    private static Boolean deployment = true;
 
     public static void main(String[] args) {
-        if (args.length >= 1 && args[0].equalsIgnoreCase("restart")) {
-            restart = true;
-        }
-        String device = System.getProperty("os.name").split(" ")[0];
-        if (device.equalsIgnoreCase("windows") || device.equalsIgnoreCase("Mac")) {
-            deployment = false;
-        }
-        config = new Config();
-
-        Sentry(config.getSentryDNS());
-        ITransaction transaction = Sentry.startTransaction("Application()", "task");
-        try {
-            Application();
-        } catch (Exception e) {
-            transaction.setThrowable(e);
-            transaction.setStatus(SpanStatus.INTERNAL_ERROR);
-        } finally {
-            transaction.finish();
-        }
-    }
-
-    public static void Application() {
-        serverCommunicator = new ServerCommunicator(config.getServerHostname(), config.getServerPort());
+        CustomConfig config = new CustomConfig();
         mysqlConnection = new MysqlConnection(config.getMysqlHostname(), config.getMysqlUsername(), config.getMysqlPassword(), config.getMysqlPort());
-        discord = new Discord(config.getDiscordToken());
-    }
-
-    public static void Sentry(String dns) {
-        Sentry.init(options -> {
-            options.setDsn(dns);
-            options.setTracesSampleRate(1.0);
-            options.setEnvironment(Main.getDeployment() ? "Production" : "localhost");
-        });
-    }
-
-
-    public static Config getConfig() {
-        return config;
+        DCBotBuilder dcBotBuilder = new DCBotBuilder(args);
+        LinkedList<CommandInterface> commands = new LinkedList<>();
+        commands.add(new Vote());
+        commands.add(new Settings());
+        dcBotBuilder.registerCommands(commands);
+        dcBotBuilder.registerEvents(new CustomEvents());
+        dcBotBuilder.build();
     }
 
     public static MysqlConnection getMysqlConnection() {
         return mysqlConnection;
-    }
-
-    public static Discord getDiscord() {
-        return discord;
-    }
-
-    public static Boolean getRestart() {
-        return restart;
-    }
-
-    public static Boolean getDeployment() {
-        return deployment;
-    }
-
-
-
-    public static ServerCommunicator getServerCommunicator() {
-        return serverCommunicator;
     }
 }
