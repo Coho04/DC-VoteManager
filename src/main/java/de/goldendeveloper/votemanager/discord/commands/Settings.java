@@ -14,8 +14,8 @@ import net.dv8tion.jda.api.interactions.commands.build.SubcommandData;
 
 public class Settings implements CommandInterface {
 
-    private static final String cmdSettingsSubCmdSetVoteChannel = "set-vote-channel";
-    private static final String cmdSettingsSubCmdOptionChannel = "textchannel";
+    private final String cmdSettingsSubCmdSetVoteChannel = "set-vote-channel";
+    private final String cmdSettingsSubCmdOptionChannel = "textchannel";
 
     @Override
     public CommandData commandData() {
