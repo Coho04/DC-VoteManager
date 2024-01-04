@@ -15,7 +15,7 @@ public class Main {
     public static void main(String[] args) {
         CustomConfig config = new CustomConfig();
         mysqlConnection = new MysqlConnection(config.getMysqlHostname(), config.getMysqlUsername(), config.getMysqlPassword(), config.getMysqlPort());
-        DCBotBuilder dcBotBuilder = new DCBotBuilder(args);
+        DCBotBuilder dcBotBuilder = new DCBotBuilder(args, true);
         dcBotBuilder.registerCommands(new Vote(), new Settings());
         dcBotBuilder.registerEvents(new CustomEvents());
         dcBotBuilder.build();
