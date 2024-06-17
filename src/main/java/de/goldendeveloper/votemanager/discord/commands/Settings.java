@@ -2,9 +2,9 @@ package de.goldendeveloper.votemanager.discord.commands;
 
 import de.goldendeveloper.dcbcore.DCBot;
 import de.goldendeveloper.dcbcore.interfaces.CommandInterface;
-import de.goldendeveloper.mysql.entities.Table;
 import de.goldendeveloper.votemanager.Main;
 import de.goldendeveloper.votemanager.MysqlConnection;
+import io.github.coho04.mysql.entities.Table;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.interactions.commands.OptionType;

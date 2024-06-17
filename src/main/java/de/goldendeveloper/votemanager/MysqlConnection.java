@@ -1,9 +1,9 @@
 package de.goldendeveloper.votemanager;
 
-import de.goldendeveloper.mysql.MYSQL;
-import de.goldendeveloper.mysql.entities.Database;
-import de.goldendeveloper.mysql.entities.Table;
 import de.goldendeveloper.votemanager.errors.CustomExceptionHandler;
+import io.github.coho04.mysql.MYSQL;
+import io.github.coho04.mysql.entities.Database;
+import io.github.coho04.mysql.entities.Table;
 
 public class MysqlConnection {
 

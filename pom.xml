@@ -79,25 +79,21 @@
 
     <repositories>
         <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-        <repository>
             <id>Golden-Developer</id>
-            <url>https://nexus.golden-developer.de/repository/DCB-CORE/</url>
+            <url>https://nexus.golden-developer.de/repository/maven-public/</url>
         </repository>
     </repositories>
 
     <dependencies>
         <dependency>
-            <groupId>com.github.golden-developer</groupId>
+            <groupId>io.github.coho04</groupId>
             <artifactId>MYSQL-Api</artifactId>
-            <version>5.3</version>
+            <version>5.7.6</version>
         </dependency>
         <dependency>
             <groupId>de.goldendeveloper</groupId>
             <artifactId>DCB-Core</artifactId>
-            <version>1.0</version>
+            <version>1.9.3</version>
         </dependency>
     </dependencies>
 </project>

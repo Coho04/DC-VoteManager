@@ -1,11 +1,11 @@
 package de.goldendeveloper.votemanager.discord;
 
-import de.goldendeveloper.mysql.entities.RowBuilder;
-import de.goldendeveloper.mysql.entities.SearchResult;
-import de.goldendeveloper.mysql.entities.Table;
 import de.goldendeveloper.votemanager.Main;
 import de.goldendeveloper.votemanager.MysqlConnection;
 import de.goldendeveloper.votemanager.discord.commands.Vote;
+import io.github.coho04.mysql.entities.RowBuilder;
+import io.github.coho04.mysql.entities.SearchResult;
+import io.github.coho04.mysql.entities.Table;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;

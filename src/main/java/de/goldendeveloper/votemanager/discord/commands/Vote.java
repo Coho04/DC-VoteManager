@@ -2,9 +2,9 @@ package de.goldendeveloper.votemanager.discord.commands;
 
 import de.goldendeveloper.dcbcore.DCBot;
 import de.goldendeveloper.dcbcore.interfaces.CommandInterface;
-import de.goldendeveloper.mysql.entities.Table;
 import de.goldendeveloper.votemanager.Main;
 import de.goldendeveloper.votemanager.MysqlConnection;
+import io.github.coho04.mysql.entities.Table;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
@@ -52,11 +52,6 @@ public class Vote implements CommandInterface {
     }
 
     public boolean hasRole(Role role, Member m) {
-        for (Role r : m.getRoles()) {
-            if (r == role) {
-                return true;
-            }
-        }
-        return false;
+        return m.getRoles().contains(role);
     }
 }

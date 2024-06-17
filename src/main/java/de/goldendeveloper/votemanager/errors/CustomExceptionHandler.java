@@ -1,6 +1,6 @@
 package de.goldendeveloper.votemanager.errors;
 
-import de.goldendeveloper.mysql.errors.ExceptionHandler;
+import io.github.coho04.mysql.errors.ExceptionHandler;
 import io.sentry.Sentry;
 
 public class CustomExceptionHandler extends ExceptionHandler {
