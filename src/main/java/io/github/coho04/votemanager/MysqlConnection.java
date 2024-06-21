@@ -1,6 +1,6 @@
-package de.goldendeveloper.votemanager;
+package io.github.coho04.votemanager;
 
-import de.goldendeveloper.votemanager.errors.CustomExceptionHandler;
+import io.github.coho04.votemanager.errors.CustomExceptionHandler;
 import io.github.coho04.mysql.MYSQL;
 import io.github.coho04.mysql.entities.Database;
 import io.github.coho04.mysql.entities.Table;
@@ -33,7 +33,7 @@ public class MysqlConnection {
         if (!table.existsColumn(clmVoteRole)) {
             table.addColumn(clmVoteRole);
         }
-        System.out.println("[Golden-Developer][GD-VoteManager] MYSQL Finished");
+        System.out.println("DC-VoteManager] MYSQL Finished");
     }
 
     public MYSQL getMysql() {

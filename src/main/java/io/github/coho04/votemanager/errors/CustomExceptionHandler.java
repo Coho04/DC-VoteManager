@@ -1,4 +1,4 @@
-package de.goldendeveloper.votemanager.errors;
+package io.github.coho04.votemanager.errors;
 
 import io.github.coho04.mysql.errors.ExceptionHandler;
 import io.sentry.Sentry;

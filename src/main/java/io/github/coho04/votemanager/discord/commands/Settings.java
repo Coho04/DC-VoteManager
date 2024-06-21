@@ -1,7 +1,7 @@
-package de.goldendeveloper.votemanager.discord.commands;
+package io.github.coho04.votemanager.discord.commands;
 
-import de.goldendeveloper.votemanager.Main;
-import de.goldendeveloper.votemanager.MysqlConnection;
+import io.github.coho04.votemanager.Main;
+import io.github.coho04.votemanager.MysqlConnection;
 import io.github.coho04.dcbcore.DCBot;
 import io.github.coho04.dcbcore.interfaces.CommandInterface;
 import io.github.coho04.mysql.entities.Table;

@@ -1,8 +1,8 @@
-package de.goldendeveloper.votemanager.discord;
+package io.github.coho04.votemanager.discord;
 
-import de.goldendeveloper.votemanager.Main;
-import de.goldendeveloper.votemanager.MysqlConnection;
-import de.goldendeveloper.votemanager.discord.commands.Vote;
+import io.github.coho04.votemanager.Main;
+import io.github.coho04.votemanager.MysqlConnection;
+import io.github.coho04.votemanager.discord.commands.Vote;
 import io.github.coho04.mysql.entities.RowBuilder;
 import io.github.coho04.mysql.entities.SearchResult;
 import io.github.coho04.mysql.entities.Table;
@@ -31,7 +31,7 @@ public class CustomEvents extends ListenerAdapter {
             embedBuilder.setDescription(description);
             embedBuilder.addField("Zuletzt aktualisiert", "Von: " + e.getUser().getAsMention(), false);
             embedBuilder.setTimestamp(new Date().toInstant());
-            embedBuilder.setFooter("@Golden-Developer", e.getJDA().getSelfUser().getAvatarUrl());
+            embedBuilder.setFooter("@VoteManager", e.getJDA().getSelfUser().getAvatarUrl());
             embedBuilder.setColor(Color.GREEN);
             embedBuilder.addField("Abstimmung-ID", "#" + Instant.now().getEpochSecond(), false);
             e.reply("Die Abstimmung wurde hinzugefügt!").setEphemeral(true).queue();

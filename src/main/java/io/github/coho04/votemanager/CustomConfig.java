@@ -1,4 +1,4 @@
-package de.goldendeveloper.votemanager;
+package io.github.coho04.votemanager;
 
 import io.github.coho04.dcbcore.Config;
 

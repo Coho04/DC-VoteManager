@@ -1,8 +1,8 @@
-package de.goldendeveloper.votemanager;
+package io.github.coho04.votemanager;
 
-import de.goldendeveloper.votemanager.discord.CustomEvents;
-import de.goldendeveloper.votemanager.discord.commands.Settings;
-import de.goldendeveloper.votemanager.discord.commands.Vote;
+import io.github.coho04.votemanager.discord.CustomEvents;
+import io.github.coho04.votemanager.discord.commands.Settings;
+import io.github.coho04.votemanager.discord.commands.Vote;
 import io.github.coho04.dcbcore.DCBotBuilder;
 
 import java.sql.SQLException;
