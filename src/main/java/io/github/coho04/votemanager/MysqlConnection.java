@@ -8,7 +8,7 @@ import io.github.coho04.mysql.entities.Table;
 public class MysqlConnection {
 
     private final MYSQL mysql;
-    public static String dbName = "GD-VoteManager";
+    public static String dbName = "vote_manager_db";
     public static String settingTable = "settings";
     public static String clmGuildID = "guild";
     public static String clmVoteChannel = "vote";
