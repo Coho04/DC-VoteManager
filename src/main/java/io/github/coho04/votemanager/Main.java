@@ -10,17 +10,23 @@ import java.sql.SQLException;
 public class Main {
 
     private  static MysqlConnection mysqlConnection;
+    private  static CustomConfig customConfig;
 
     public static void main(String[] args) throws SQLException {
-        CustomConfig config = new CustomConfig();
-        mysqlConnection = new MysqlConnection(config.getMysqlHostname(), config.getMysqlUsername(), config.getMysqlPassword(), config.getMysqlPort());
+        customConfig = new CustomConfig();
+        mysqlConnection = new MysqlConnection(customConfig.getMysqlHostname(), customConfig.getMysqlUsername(), customConfig.getMysqlPassword(), customConfig.getMysqlPort());
         DCBotBuilder dcBotBuilder = new DCBotBuilder(args, true);
         dcBotBuilder.registerCommands(new Vote(), new Settings());
         dcBotBuilder.registerEvents(new CustomEvents());
         dcBotBuilder.build();
+        System.out.println("Java application started successfully");
     }
 
     public static MysqlConnection getMysqlConnection() {
         return mysqlConnection;
+    }
+
+    public static CustomConfig getCustomConfig() {
+        return customConfig;
     }
 }

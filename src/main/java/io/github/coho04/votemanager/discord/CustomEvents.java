@@ -44,7 +44,7 @@ public class CustomEvents extends ListenerAdapter {
 
     @Override
     public void onGuildJoin(GuildJoinEvent e) {
-        Table table = Main.getMysqlConnection().getMysql().getDatabase(MysqlConnection.dbName).getTable(MysqlConnection.settingTable);
+        Table table = Main.getMysqlConnection().getMysql().getDatabase(Main.getCustomConfig().getMysqlDatabase()).getTable(MysqlConnection.settingTable);
         if (!table.getColumn(MysqlConnection.clmGuildID).getAll().getAsString().contains(e.getGuild().getId())) {
             e.getGuild().createRole().queue(role -> {
                 role.getManager().setName("Vote").queue();
@@ -59,7 +59,7 @@ public class CustomEvents extends ListenerAdapter {
     }
 
     public TextChannel getTextChannel(Guild guild) {
-        Table table = Main.getMysqlConnection().getMysql().getDatabase(MysqlConnection.dbName).getTable(MysqlConnection.settingTable);
+        Table table = Main.getMysqlConnection().getMysql().getDatabase(Main.getCustomConfig().getMysqlDatabase()).getTable(MysqlConnection.settingTable);
         HashMap<String, SearchResult> row = table.getRow(table.getColumn(MysqlConnection.clmGuildID), guild.getId()).getData();
         return guild.getTextChannelById(row.get( MysqlConnection.clmVoteChannel).getAsString());
     }

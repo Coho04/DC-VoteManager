@@ -29,9 +29,9 @@ public class Settings implements CommandInterface {
     public void runSlashCommand(SlashCommandInteractionEvent e, DCBot dcBot) {
         if (e.getSubcommandName() != null && e.getSubcommandName().equals(cmdSettingsSubCmdSetVoteChannel)) {
             TextChannel channel = e.getOption(cmdSettingsSubCmdOptionChannel).getAsChannel().asTextChannel();
-            if (Main.getMysqlConnection().getMysql().existsDatabase(MysqlConnection.dbName)) {
-                if (Main.getMysqlConnection().getMysql().getDatabase(MysqlConnection.dbName).existsTable(MysqlConnection.settingTable)) {
-                    Table table = Main.getMysqlConnection().getMysql().getDatabase(MysqlConnection.dbName).getTable(MysqlConnection.settingTable);
+            if (Main.getMysqlConnection().getMysql().existsDatabase(Main.getCustomConfig().getMysqlDatabase())) {
+                if (Main.getMysqlConnection().getMysql().getDatabase(Main.getCustomConfig().getMysqlDatabase()).existsTable(MysqlConnection.settingTable)) {
+                    Table table = Main.getMysqlConnection().getMysql().getDatabase(Main.getCustomConfig().getMysqlDatabase()).getTable(MysqlConnection.settingTable);
                     if (table.getColumn(MysqlConnection.clmGuildID).getAll().getAsString().contains(e.getGuild().getId())) {
                         table.getRow(table.getColumn(MysqlConnection.clmGuildID), e.getGuild().getId()).set(table.getColumn(MysqlConnection.clmVoteChannel), channel.getId());
                         e.reply("Der Channel wurde erfolgreich eingestellt!").queue();

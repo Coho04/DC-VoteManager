@@ -8,7 +8,6 @@ import io.github.coho04.mysql.entities.Table;
 public class MysqlConnection {
 
     private final MYSQL mysql;
-    public static String dbName = "vote_manager_db";
     public static String settingTable = "settings";
     public static String clmGuildID = "guild";
     public static String clmVoteChannel = "vote";
@@ -16,10 +15,10 @@ public class MysqlConnection {
 
     public MysqlConnection(String hostname, String username, String password, int port) {
         mysql = new MYSQL(hostname, username, password, port, new CustomExceptionHandler());
-        if (!mysql.existsDatabase(dbName)) {
-            mysql.createDatabase(dbName);
+        if (!mysql.existsDatabase(Main.getCustomConfig().getMysqlDatabase())) {
+            mysql.createDatabase(Main.getCustomConfig().getMysqlDatabase());
         }
-        Database db = mysql.getDatabase(dbName);
+        Database db = mysql.getDatabase(Main.getCustomConfig().getMysqlDatabase());
         if (!db.existsTable(settingTable)) {
             db.createTable(settingTable);
         }
